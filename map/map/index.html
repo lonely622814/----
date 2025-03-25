@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="./img/favicon.ico" />
+    <!-- <link rel="stylesheet" href="./fonts/font.css" /> -->
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/jq22.css" />
+    <title>研锦消防大数据平台</title>
+    <style>
+      .BMap_scaleTxt{
+        color: #fff!important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main" id="appIndex">
+      <div class="header">
+        <img
+          style="width: 80px;height: 84px;margin-right: 20px;"
+          src="img/logo.png"
+          alt=""
+        />
+        <img src="img/lzxfdsjpt.png" alt="智慧旅游大数据平台" />
+        <div class="dateBox">
+          <span id="time"
+            >{{ year }}-{{ month }}-{{ date }}&nbsp;&nbsp; {{ hour }}:{{
+              minute
+            }}:{{ second }}&nbsp;&nbsp; {{ strDate }}
+            <!-- <img
+              style="
+            width: 25px;
+            height: 16px;
+            margin: 0 5px 0 10px;
+        "
+              :src="weather_icon"
+              alt="天气"
+            />
+            {{ weather_curr }}</span
+          > -->
+          <!-- <span>dsggdfgf</span>
+             <span>dsggdfgf -->
+             </span>
+        </div>
+      </div>
+      <div class="content">
+
+        <div class="leftBox col-md-2">
+          <div class="pingfen">
+            <div>
+              <div class="pfTitle">
+                <img src="img/aqpf.png" alt="" />
+                <span class="titleText">游客满意度</span>
+              </div>
+              <div class="pfcontent">
+                <div class="leftBox">
+                  <img src="img/aqdj.png" alt="" />
+                  <span>热门景区访问量</span>
+                </div>
+                <div id="echartAqpf" style="width:105px;height:105px;padding-left: 20px;margin-bottom: 32px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="paimin">
+            <div>
+              <div class="pfTitle" style="margin-bottom: 30px;">
+                <img style="margin-right: 10px;" src="img/jzaqpf.png" alt="" />
+                <span class="titleText">景区安全评分排名</span>
+              </div>
+              <div id="FontScroll">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <span class="leftSpan">故宫 </span>
+                      <span>70</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="leftSpan">黄山 </span>
+                      <span>75</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="leftSpan">千年古都</span>
+                      <span>71</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="leftSpan">苏州园林</span>
+                      <span>65</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="leftSpan">九寨沟</span>
+                      <span>60</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="top10">
+            <div>
+              <div class="pfTitle" style="margin-bottom: 30px;">
+                <img style="margin-right: 10px;" src="img/aqyh.png" alt="" />
+                <span class="titleText">安全热门景区TOP10</span>
+              </div>
+              <img
+                style="display: block;margin: auto;width: 80%;height: 75%;"
+                src="img\微信图片_20241202212402.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="middleBox col-md-8">
+          <!-- <div class="baiduMap">
+
+            <div id="container"></div>
+          </div> -->
+
+          <!--地图模块-->
+          <button id="back-btn">返回全国</button>
+          <div class="map">
+            <div class="chart"></div>
+          </div>
+
+          <!-- <div id="container" style="height: 100%"></div> -->
+          <div class="tongjiList">
+            <div>
+              <div class="col-md-3" style="margin: 0 15px;position: relative;">
+                <div style="justify-content: center;position: relative;top: 22px;" class="pfTitle">
+                  <img style="margin-right: 10px;" src="img/xfjs.png" alt="" />
+                  <span class="titleText">景区基础设施</span>
+                </div>
+                <!-- <img src="img/xfjsxt.png" alt="" /> -->
+                <div id="echartsxfjs" style="width:100%;height:180px;"></div>
+              </div>
+              <div class="comLine"></div>
+              <div class="col-md-3" style="margin: 0 15px;position: relative;">
+                <div style="justify-content: center;position: relative; top: 22px;
+            " class="pfTitle">
+                  <img style="margin-right: 10px;" src="img/ldbj.png" alt="" />
+                  <span class="titleText">游客投诉统计</span>
+                </div>
+                <span style="top:90px" class="smdate">{{ year }}/{{ month }}</span>
+                <div id="echartsldbj" style="width:100%;height:180px;margin-top: 10px;"></div>
+                <!-- <img src="img/ldbjtj.png" alt="" /> -->
+                <!-- <span class="spanfont"
+                  >11 &nbsp; 12 &nbsp; 13 &nbsp;11 &nbsp;12 &nbsp;13 &nbsp;
+                  15</span
+                > -->
+              </div>
+              <div class="comLine"></div>
+              <div class="col-md-3" style="margin: 0 15px;position: relative;">
+                <div style="justify-content: center;position: relative; top: 22px;" class="pfTitle">
+                  <img style="margin-right: 10px;" src="img/jgbj.png" alt="" />
+                  <span class="titleText">整改完成率</span>
+                </div>
+                <span style="top:90px" class="smdate">{{ year }}/{{ month }}</span>
+                <!-- <img src="img/jgbjtj.png" alt="" /> -->
+                <div id="echartsjgbj" style="width:100%;height:180px;"></div>
+                <!-- <span class="spanfont"
+                  >11 &nbsp; 12 &nbsp; 13 &nbsp;11 &nbsp;12 &nbsp;13 &nbsp;
+                  15</span
+                > -->
+              </div>
+              <div class="comLine"></div>
+              <div class="col-md-3" style="margin: 0 15px;position: relative;">
+                <div
+                  style="justify-content: center;margin-bottom: 3px;margin-top: 30px;"
+                  class="pfTitle"
+                >
+                  <img style="margin-right: 10px;" src="img/rcxj.png" alt="" />
+                  <span class="titleText">日常巡查统计</span>
+                </div>
+                <span style="left: 120px;bottom:130px" class="smdate"
+                >{{ year }}/{{ month }}</span
+              >
+                <div id="echartsrcxj" style="width:100%;height:180px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rightBox col-md-2">
+          <div class="weihutj">
+            <div>
+              <div style="margin-left: 27px;" class="pfTitle">
+                <img style="margin-right: 10px;" src="img/whtj.png" alt="" />
+                <span class="titleText">游客统计</span>
+              </div>
+              <div class="pfcontent flexrow">
+                <div
+                  style="width: 120px;"
+                  class="leftBox flexcolom"
+                >
+                  <div class="sbwx">
+                    <span class="sbxanim animText">69</span>
+                    <span class="smtext sbwxtext">满意度</span>
+                  </div>
+                  <span style="margin-top: 20px;" class="smtext">游客访问次数</span>
+                </div>
+
+                <div class="flexcolom" style="margin: 0 8px;">
+                 <div id="echartWbtj" style="width:100px;height:100px;"></div>
+                  <span style="margin-top: 20px;" class="smtext"
+                    >游客不满意度覆盖率</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="guzhangtj">
+            <div>
+              <div style="margin: 0 15px;position: relative;">
+                <div
+                  style="justify-content: flex-start;margin-bottom: 3px;"
+                  class="pfTitle"
+                >
+                  <img style="margin-right: 10px;" src="img/gzt.png" alt="" />
+                  <span class="titleText">游客来源分布</span>
+                </div>
+                <span style="left: 40%;top: 30%;" class="smdate"
+                  >{{ year }}/{{ month }}</span
+                >
+                <div id="echartsgztj" style="width:100%;height:180px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="huojingtj">
+            <div>
+              <div style="margin: 0 15px;position: relative;">
+                <div
+                  style="justify-content: flex-start;margin-bottom: 3px;"
+                  class="pfTitle"
+                >
+                  <img style="margin-right: 10px;" src="img/hj.png" alt="" />
+                  <span class="titleText">季节游客变化</span>
+                </div>
+                <span style="left: 40%;top: 30%;"  class="smdate"
+                  >{{ year }}/{{ month }}</span
+                >
+                <div id="echartshjtj" style="width:100%;height:180px;left: 10px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="zhifatj">
+            <div class="flexcolom">
+                <div
+                  class="pfTitle"
+                >
+                  <img style="margin-right: 10px;" src="img/zfjg.png" alt="" />
+                  <span class="titleText">安全管理结果统计</span>
+                </div>
+                <div id="echartszfjgtj" style="width:100%;height:180px;padding: 0 12px;top:-18px"></div>
+                <!-- <img src="img/zfjgtj.png" alt="" /> -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/walden.js"></script>
+    <script src="js/roma.js"></script>
+    <script src="js/jquery.countUp.js"></script>
+    <script src="js/fontscroll.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="js/echart.js"></script>
+    <script src="js/map/china.js"></script>
+    <script src="js/myMap.js"></script>
+    <!-- 省份地图 -->
+    <script src="js/anhui.js"></script>
+    <script src="js/map/anhui.js"></script>
+    <script src="js/map/beijing.js"></script>
+    <script src="js/map/chongqing.js"></script>
+    <script src="js/map/fujian.js"></script>
+    <script src="js/map/gansu.js"></script>
+    <script src="js/map/guangdong.js"></script>
+    <script src="js/map/guangxi.js"></script>
+    <script src="js/map/guizhou.js"></script>
+    <script src="js/map/hainan.js"></script>
+    <script src="js/map/hebei.js"></script>
+    <script src="js/map/heilongjiang.js"></script>
+    <script src="js/map/henan.js"></script>
+    <script src="js/map/hubei.js"></script>
+    <script src="js/map/hunan.js"></script>
+    <script src="js/map/jiangsu.js"></script>
+    <script src="js/map/jiangxi.js"></script>
+    <script src="js/map/jilin.js"></script>
+    <script src="js/map/liaoning.js"></script>
+    <script src="js/map/neimenggu.js"></script>
+    <script src="js/map/ningxia.js"></script>
+    <script src="js/map/qinghai.js"></script>
+    <script src="js/map/shaanxi.js"></script>
+    <script src="js/map/shandong.js"></script>
+    <script src="js/map/shanghai.js"></script>
+    <script src="js/map/shanxi.js"></script>
+    <script src="js/map/sichuan.js"></script>
+    <script src="js/map/taiwan.js"></script>
+    <script src="js/map/tianjin.js"></script>
+    <script src="js/map/xianggang.js"></script>
+    <script src="js/map/xinjiang.js"></script>
+    <script src="js/map/xizang.js"></script>
+    <script src="js/map/yunnan.js"></script>
+    <script src="js/map/zhejiang.js"></script>
+
+
+  </body>
+</html>
